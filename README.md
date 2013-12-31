@@ -1,0 +1,3 @@
+# comparator
+
+Generate comparator functions.

@@ -1,0 +1,17 @@
+{
+  "name": "comparator",
+  "main": "src/comparator.js",
+  "version": "0.0.0",
+  "description": "Generate comparator functions.",
+  "dependencies": {
+    "lodash": "~2.4.1"
+  },
+  "devDependencies": {
+    "requirejs": "*",
+    "requirejs-text": "*",
+    "underscore": "*",
+    "jquery": "*",
+    "qunit": "*",
+    "backbone": "*"
+  }
+}

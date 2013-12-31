@@ -1,0 +1,33 @@
+{
+    "project": {
+        "name": "comparator",
+        "version": "0.0.0"
+    },
+    "files": {
+        "src/comparator.js": {
+            "name": "src/comparator.js",
+            "modules": {
+                "comparator": 1
+            },
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {
+        "comparator": {
+            "name": "comparator",
+            "submodules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "src/comparator.js",
+            "line": 5,
+            "description": "AMD and CJS module."
+        }
+    },
+    "classes": {},
+    "classitems": [],
+    "warnings": []
+}
