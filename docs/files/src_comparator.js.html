@@ -100,7 +100,9 @@
 if (typeof define !== &#x27;function&#x27;) { var define = require(&#x27;amdefine&#x27;)(module) }
 /* jshint ignore:end */
 
-define([&quot;underscore&quot;], function (_) {
+define([&quot;lodash&quot;], function (_) {
+
+	&#x27;use strict&#x27;;
 
 	function compareValues(aValue, bValue, direction) {
 		if (aValue === bValue) {
