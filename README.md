@@ -1,3 +1,3 @@
 # comparator
 
-Generate comparator functions.
+Create comparator functions suitable for usage with Array.prototype.sort

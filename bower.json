@@ -1,8 +1,8 @@
 {
   "name": "comparator",
-  "main": "src/comparator.js",
-  "version": "0.0.0",
-  "description": "Generate comparator functions.",
+  "main": "built/comparator.js",
+  "version": "0.1.0",
+  "description": "Create comparator functions suitable for usage with Array.prototype.sort",
   "dependencies": {
     "lodash": "~2.4.1"
   },
@@ -12,6 +12,6 @@
     "underscore": "*",
     "jquery": "*",
     "qunit": "*",
-    "backbone": "*"
+    "backbone": "~1.1.0"
   }
 }

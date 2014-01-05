@@ -4,8 +4,8 @@
         "version": "0.0.0"
     },
     "files": {
-        "src/comparator.js": {
-            "name": "src/comparator.js",
+        "src/index.js": {
+            "name": "src/index.js",
             "modules": {
                 "comparator": 1
             },
@@ -22,7 +22,7 @@
             "fors": {},
             "namespaces": {},
             "tag": "module",
-            "file": "src/comparator.js",
+            "file": "src/index.js",
             "line": 5,
             "description": "AMD and CJS module."
         }

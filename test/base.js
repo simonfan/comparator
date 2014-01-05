@@ -2,7 +2,7 @@
 
 	var mod = typeof define !== 'function' ?
 		// node
-		'.././src/comparator' :
+		'.././src' :
 		// browser
 		'comparator',
 		// dependencies for the test

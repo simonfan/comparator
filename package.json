@@ -1,8 +1,8 @@
 {
   "name": "comparator",
-  "main": "./src/comparator",
-  "version": "0.0.0",
-  "description": "Generate comparator functions.",
+  "main": "./src",
+  "version": "0.1.0",
+  "description": "Create comparator functions suitable for usage with Array.prototype.sort",
   "repository": {
     "type": "git",
     "url": "https://github.com/simonfan/comparator.git"
@@ -22,7 +22,7 @@
     "should": "~2.1.0",
     "mocha": "~1.15.0",
     "grunt-simple-mocha": "~0.4.0",
-    "backbone": "*"
+    "backbone": "~1.1.0"
   },
   "scripts": {
     "test": "mocha"
