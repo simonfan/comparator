@@ -1,6 +1,18 @@
+// third-party
+const objectPath = require('object-path');
+
 // constants
 const SORT_DESC_RE = /(^-)?(.+)$/;
 
+/**
+ * Compares two calues and returns a number that will be used by
+ * Array.prototype.sort.
+ * 
+ * @param  {*} aValue
+ * @param  {*} bValue
+ * @param  {Number} direction
+ * @return {Number}
+ */
 function compareValues(aValue, bValue, direction) {
   if (aValue === bValue) {
     return 0;
@@ -9,7 +21,14 @@ function compareValues(aValue, bValue, direction) {
   }
 }
 
-function parsePropertySortString(str) {
+/**
+ * Parses a property sort string into an object with
+ * `property` and `direction`.
+ * 
+ * @param  {String} str
+ * @return {Object}
+ */
+function parsePropertyComparisonString(str) {
 
   var match = str.match(SORT_DESC_RE);
 
@@ -19,33 +38,41 @@ function parsePropertySortString(str) {
   };
 }
 
-var comparator = function comparator(properties, options) {
+/**
+ * Genenates a comparator function that takes in two objects
+ * and returns either 1 or -1.
+ *
+ * Properties can have a leading '-' indicating they should
+ * be used for sorting ASC.
+ *
+ * Multiple properties are allowed so that in case one property
+ * comparison returns 0 (which means they are equal), the
+ * next property is used for the comparison.
+ * 
+ * @param  {String|Array[String]|Array[Object]} properties
+ * @return {Function}
+ */
+module.exports = function comparator(properties) {
   // properties must be an array.
-  properties = typeof properties === 'string' ? [properties] : properties;
+  properties = 
+    typeof properties === 'string' || 
+    (typeof properties === 'object' && !Array.isArray(properties)) ?
+    [properties] : properties;
 
   properties = properties.map(function (property) {
     return typeof property === 'string' ?
-      parsePropertySortString(property) : property;
+      parsePropertyComparisonString(property) : property;
   });
 
-  // default options
-  options = options || {};
-
-  // root namespace from which to obtain values.
-  var root = options.root;
-
-  return function (a, b) {
-
-    a = root ? a[root] : a;
-    b = root ? b[root] : b;
+  return function compare(a, b) {
 
     return properties.reduce(function (res, property) {
 
       if (res === 0) {
-        var aValue = a[property.property],
-            bValue = b[property.property],
+        var aValue = objectPath.get(a, property.property),
+            bValue = objectPath.get(b, property.property),
             direction = property.direction;
-
+        
         return compareValues(aValue, bValue, direction);
       } else {
         return res;
@@ -54,5 +81,3 @@ var comparator = function comparator(properties, options) {
     }, 0);
   };
 };
-
-module.exports = comparator;

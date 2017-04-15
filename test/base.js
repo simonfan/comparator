@@ -25,9 +25,9 @@ describe('comparatorFunc = comparator(props, options)', function () {
 		});
 	});
 
-	it('Single comparison', function() {
+	it('should compare items ascending by price', function() {
 		var fruits = this.fruits,
-				priceComparator = comparator('price', { price: 1 }),
+				priceComparator = comparator('price'),
 				orange = fruits[0],
 				banana = fruits[1],
 				apple  = fruits[2];
@@ -40,11 +40,44 @@ describe('comparatorFunc = comparator(props, options)', function () {
 		priceComparator(apple, orange).should.eql(1);
 	});
 
-	it('Multiple comparison, single direction', function () {
+	it('should compare items descending by price', function() {
+		var fruits = this.fruits,
+				priceComparator = comparator('-price'),
+				orange = fruits[0],
+				banana = fruits[1],
+				apple  = fruits[2];
+
+		priceComparator(orange, banana).should.eql(1);
+		priceComparator(banana, orange).should.eql(-1);
+
+		priceComparator(apple, banana).should.eql(0);
+
+		priceComparator(apple, orange).should.eql(-1);
+	});
+
+	it('should allow for defining a compare property in object format', function() {
+		var fruits = this.fruits,
+				priceComparator = comparator({
+					property: 'price',
+					direction: -1
+				}),
+				orange = fruits[0],
+				banana = fruits[1],
+				apple  = fruits[2];
+
+		priceComparator(orange, banana).should.eql(1);
+		priceComparator(banana, orange).should.eql(-1);
+
+		priceComparator(apple, banana).should.eql(0);
+
+		priceComparator(apple, orange).should.eql(-1);
+	});
+
+	it('use multiple properties for running comparisons multiple comparisons', function () {
 
 		var fruits = this.fruits,
 				priceComparator = comparator('price'),
-				priceThenNameComparator = comparator(['price','name']),
+				priceThenNameComparator = comparator(['price', 'name']),
 				orange = fruits[0],
 				banana = fruits[1],
 				apple  = fruits[2];
@@ -56,33 +89,5 @@ describe('comparatorFunc = comparator(props, options)', function () {
 		priceThenNameComparator(apple, banana).should.eql(-1);
 		priceThenNameComparator(banana, apple).should.eql(1);
 	});
-
-	// it('Multiple comparison using backbone models', function () {
-
-	// 	var fruits = this.fruits,
-	// 		bbFruits = new Backbone.Collection(_.clone(fruits));
-
-	// 	bbFruits.pluck('name').should.eql(_.pluck(fruits, 'name'));
-
-	// 	// set a comparator on bbFruits
-	// 	bbFruits.comparator = comparator(['price','name'], {
-	// 		price: -1,
-	// 		name: -1,
-	// 	}, {
-	// 		root: 'attributes'
-	// 	});
-
-	// 	bbFruits.sort();
-
-	// 	bbFruits.pluck('name').should.eql(['Banana','Apple','Orange']);
-	// });
-
-	// it('direction simple', function () {
-	// 	var fruits = this.fruits,
-	// 		higherQuantities = comparator('quantity', -1);
-
-	// 	// sort fruits
-	// 	_.pluck(fruits.sort(higherQuantities),'quantity').should.eql([30, 25, 20])
-	// })
 
 });
