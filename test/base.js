@@ -90,4 +90,18 @@ describe('comparatorFunc = comparator(props, options)', function () {
 		priceThenNameComparator(banana, apple).should.eql(1);
 	});
 
+	it('ensures that undefined values come last', function () {
+
+		var a = {
+			quantity: 10
+		};
+
+		var b = {};
+
+		var quantityComparator = comparator('quantity');
+
+		quantityComparator(a, b).should.eql(-1);
+
+	});
+
 });

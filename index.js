@@ -7,6 +7,8 @@ const SORT_DESC_RE = /(^-)?(.+)$/;
 /**
  * Compares two calues and returns a number that will be used by
  * Array.prototype.sort.
+ *
+ * `undefined` values will always come last.
  * 
  * @param  {*} aValue
  * @param  {*} bValue
@@ -14,6 +16,14 @@ const SORT_DESC_RE = /(^-)?(.+)$/;
  * @return {Number}
  */
 function compareValues(aValue, bValue, direction) {
+  if (aValue === undefined && bValue !== undefined) {
+    return 1;
+  }
+
+  if (aValue !== undefined && bValue === undefined) {
+    return -1;
+  }
+
   if (aValue === bValue) {
     return 0;
   } else {
