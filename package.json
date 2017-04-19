@@ -1,7 +1,7 @@
 {
   "name": "@habemus/comparator",
   "main": "index.js",
-  "version": "2.1.0",
+  "version": "2.0.0",
   "description": "Create comparator functions suitable for usage with Array.prototype.sort",
   "repository": {
     "type": "git",
